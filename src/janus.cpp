@@ -19,6 +19,10 @@ long long factorial(int n) {
   if (n < 0)
     throw std::invalid_argument("Cannot compute factorial of negative number");
 
+  if (n > 20)
+    throw std::invalid_argument(
+        "Cannot compute factorials for integers more than 20 for now");
+
   if (n == 0)
     return 1;
   return n * factorial(n - 1);
