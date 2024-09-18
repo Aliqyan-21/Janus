@@ -21,16 +21,21 @@ git clone git@github.com:Aliqyan-21/Janus.git
 To build the library, use CMake:
 
 ```bash
-mkdir build
-cd build
-cmake ..
-cmake --build .
+cd Janus
+cmake -Bbuild
+cmake --build build
 ```
 
 To install the library:
 
 ```bash
-cmake --install .
+cmake --install build --prefix /path/to/install
+```
+
+or If you want it to install globally
+
+```bash
+sudo cmake --install build --prefix /usr/local
 ```
 
 ## Usage
@@ -38,7 +43,13 @@ cmake --install .
 Include the library in your project:
 
 ```cpp
-#include <janus/janus.hpp>
+#include <janus.hpp>
+```
+
+link the library
+
+```bash
+g++ main.cpp -ljanus_lib
 ```
 
 Link against janus_lib in your CMake configuration.
