@@ -15,6 +15,14 @@ int main(void) {
     std::cerr << "Error: " << e.what() << std::endl;
   }
 
-  std::cout << "Factorial: 21 = " << Janus::factorial(21) << std::endl;
+  try {
+    std::cout << "Factorial: 0 = " << Janus::factorial(0) << std::endl;
+    std::cout << "Factorial: 1 = " << Janus::factorial(1) << std::endl;
+    std::cout << "Factorial: 20 = " << Janus::factorial(20) << std::endl;
+    std::cout << "Factorial: 21 = " << Janus::factorial(21) << std::endl;
+    // std::cout << "Factorial: -1 = " << Janus::factorial(-1) << std::endl;
+  } catch (const std::invalid_argument &e) {
+    std::cout << "Error: " << e.what() << std::endl;
+  }
   return 0;
 }
