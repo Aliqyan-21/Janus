@@ -7,11 +7,13 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-include_directories(include)
-
 add_library(janus_lib src/janus.cpp)
 
-target_include_directories(janus_lib PUBLIC ${PROJECT_SOURCE_DIR}/include)
+target_include_directories(janus_lib
+    PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include>
+)
 
 add_executable(janus_tests tests/janus_tests.cpp)
 
@@ -41,12 +43,11 @@ write_basic_package_version_file(
 )
 
 install(FILES
+    "${CMAKE_CURRENT_BINARY_DIR}/janus_libConfig.cmake"
     "${CMAKE_CURRENT_BINARY_DIR}/janus_libConfigVersion.cmake"
-    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/janus_libConfig.cmake"
     DESTINATION lib/cmake/janus
 )
 
-# Configure a package config file
 configure_file(
     "${CMAKE_CURRENT_SOURCE_DIR}/cmake/janus_libConfig.cmake.in"
     "${CMAKE_CURRENT_BINARY_DIR}/janus_libConfig.cmake"

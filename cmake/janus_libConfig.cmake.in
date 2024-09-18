@@ -1,6 +1,5 @@
-@PACKAGE_INIT@
-
 include(CMakeFindDependencyMacro)
-find_dependency(CMake REQUIRED)
 
 include("${CMAKE_CURRENT_LIST_DIR}/janus_libTargets.cmake")
+
+include_directories(${CMAKE_CURRENT_LIST_DIR}/../../include)
