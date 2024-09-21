@@ -7,7 +7,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-add_library(janus_lib src/janus.cpp)
+option(BUILD_SHARED_LIBS "Build shared libraries instead of static ones" ON)
+
+add_library(janus_lib ${LIBRARY_TYPE} src/janus.cpp)
 
 target_include_directories(janus_lib
     PUBLIC
@@ -26,6 +28,7 @@ install(TARGETS janus_lib
     ARCHIVE DESTINATION lib
     LIBRARY DESTINATION lib
     RUNTIME DESTINATION bin
+    PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE WORLD_READ WORLD_EXECUTE
 )
 
 install(DIRECTORY include/ DESTINATION include)
